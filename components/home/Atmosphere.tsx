@@ -1,3 +1,5 @@
+import { MediaImage } from "@/components/MediaImage";
+
 const shots = [
   { src: "/media/clouds.jpg", alt: "Cloud layer from altitude", className: "gallery__item--1" },
   { src: "/media/cockpit.jpg", alt: "Cockpit at dusk", className: "gallery__item--2" },
@@ -9,8 +11,8 @@ const shots = [
 
 export function Atmosphere() {
   return (
-    <section className="gallery" aria-label="Imagery direction">
-      <div className="gallery__header wrap" style={{ paddingBottom: "2rem" }}>
+    <section className="gallery defer-section" aria-label="Imagery direction">
+      <div className="gallery__header wrap">
         <p className="eyebrow">The view from above</p>
         <h2 className="section-title">
           Dawn light. Cloud layers.
@@ -21,8 +23,13 @@ export function Atmosphere() {
       <div className="gallery__mosaic">
         {shots.map((shot) => (
           <figure key={shot.src} className={`gallery__item ${shot.className}`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={shot.src} alt={shot.alt} />
+            <MediaImage
+              src={shot.src}
+              alt={shot.alt}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="gallery__img"
+            />
           </figure>
         ))}
       </div>

@@ -2,22 +2,19 @@ import Link from "next/link";
 
 export function CtaBand() {
   return (
-    <section className="join" style={{ paddingTop: "clamp(3rem, 8vw, 5rem)" }}>
-      <div className="wrap" style={{ textAlign: "center" }}>
-        <h2 className="section-title" style={{ margin: "0 auto", maxWidth: "18ch" }}>
+    <section className="join cta-band defer-section">
+      <div className="wrap cta-band__inner">
+        <h2 className="section-title cta-band__title">
           The corridor is waiting.
           <br />
           So is your seat on the list.
         </h2>
-        <p className="section-lead" style={{ margin: "1rem auto 0", maxWidth: "32rem" }}>
+        <p className="section-lead cta-band__lead">
           If Lagos–Abuja is part of your life, put your name down. Founding members
           are how we prove this should be built — and you will be first to know when
           it is.
         </p>
-        <div
-          className="hero__actions"
-          style={{ justifyContent: "center", marginTop: "1.75rem" }}
-        >
+        <div className="hero__actions cta-band__actions">
           <Link href="/#join" className="btn btn--primary">
             Join the founding circle
           </Link>

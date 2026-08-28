@@ -1,13 +1,20 @@
 import Link from "next/link";
+import { MediaImage } from "@/components/MediaImage";
 
 export function Hero() {
   return (
     <section className="hero" id="top" aria-label="Global Fire Airlines">
       <div className="hero__media" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/hero.jpg" alt="" className="hero__img" />
+        <MediaImage
+          src="/media/hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hero__img"
+        />
         <div className="hero__veil" />
-        <div className="grain" />
+        <div className="grain" aria-hidden="true" />
       </div>
 
       <div className="hero__content">
