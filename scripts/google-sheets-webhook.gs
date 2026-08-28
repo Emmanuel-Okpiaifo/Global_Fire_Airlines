@@ -9,10 +9,11 @@
  *    - Execute as: Me
  *    - Who has access: Anyone
  * 5. Copy the deployment URL into .env.local as GOOGLE_SHEETS_WEBHOOK_URL
- * 6. Set SHEET_SECRET below to match GOOGLE_SHEETS_SECRET in .env.local
+ * 6. In THIS Apps Script editor only, set SHEET_SECRET to match
+ *    GOOGLE_SHEETS_SECRET. Never commit the real secret to git.
  */
 
-const SHEET_SECRET = "SlLy7qo0JHZUocR4CAVMI7lOvDN7Hd9NXCp";
+const SHEET_SECRET = "change-me-to-a-long-random-string";
 
 const TABS = {
   FLAME: "Flame",

@@ -78,7 +78,10 @@ The site reached Google, but Google served a **sign-in page** instead of the scr
 7. Confirm `GOOGLE_SHEETS_SECRET` matches `SHEET_SECRET` in the script.
 8. **Redeploy** the Netlify site.
 
-Quick check: open the Web app URL in a private browser window. You should see `{"ok":true,"service":"gfa-sheets"}`. If you get a Google login page, access is still wrong.
+Quick check: open the Web app URL in a private browser window. You should see `{"ok":true,"service":"gfa-sheets"}`.
+
+- Google login page → **Who has access** is still not **Anyone**
+- `Script function not found: doGet` → the live deployment is an older copy of the script. Paste the latest `scripts/google-sheets-webhook.gs` into Apps Script (keep your real `SHEET_SECRET` in the editor), **Save**, then **Deploy → New deployment** (or Edit → New version) and use the new `/exec` URL
 
 | Problem | Fix |
 |---------|-----|
