@@ -64,6 +64,22 @@ Submit a test entry on each form tab (Founding with Flame, Founding with Ember, 
 
 ## Troubleshooting
 
+### HTTP 401 / Google login HTML (`ppConfig`)
+
+The site reached Google, but Google served a **sign-in page** instead of the script. The web app is not public.
+
+1. Open the spreadsheet → **Extensions → Apps Script**
+2. **Deploy → Manage deployments → ✎ Edit**
+3. **Execute as:** Me
+4. **Who has access:** **Anyone**  
+   Not “Only myself”. Not “Anyone with a Google account”.
+5. Click **Deploy**. Copy the **new** Web app URL (it must end in `/exec`).
+6. Paste it into Netlify → Environment variables as `GOOGLE_SHEETS_WEBHOOK_URL`.
+7. Confirm `GOOGLE_SHEETS_SECRET` matches `SHEET_SECRET` in the script.
+8. **Redeploy** the Netlify site.
+
+Quick check: open the Web app URL in a private browser window. You should see `{"ok":true,"service":"gfa-sheets"}`. If you get a Google login page, access is still wrong.
+
 | Problem | Fix |
 |---------|-----|
 | `Unauthorized request` | `GOOGLE_SHEETS_SECRET` must exactly match `SHEET_SECRET` in Apps Script |

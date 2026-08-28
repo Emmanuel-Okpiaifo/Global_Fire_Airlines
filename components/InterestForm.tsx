@@ -61,7 +61,12 @@ export function InterestForm({ initialKind = "founding" }: { initialKind?: Kind 
 
       if (!res.ok) {
         setStatus("err");
-        setMessage(data.error || "Something went wrong. Please try again.");
+        const errText = data.error || "Something went wrong. Please try again.";
+        setMessage(
+          /<!DOCTYPE|<html[\s>]|ppConfig/i.test(errText)
+            ? "Google Sheets is blocking the form. In Apps Script set Who has access to Anyone, update the webhook URL in Netlify, then redeploy."
+            : errText,
+        );
         return;
       }
       setStatus("ok");

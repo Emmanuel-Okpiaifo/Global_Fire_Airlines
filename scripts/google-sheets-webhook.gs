@@ -12,7 +12,7 @@
  * 6. Set SHEET_SECRET below to match GOOGLE_SHEETS_SECRET in .env.local
  */
 
-const SHEET_SECRET = "change-me-to-a-long-random-string";
+const SHEET_SECRET = "SlLy7qo0JHZUocR4CAVMI7lOvDN7Hd9NXCp";
 
 const TABS = {
   FLAME: "Flame",
@@ -46,6 +46,10 @@ const HEADERS = {
   ],
   counsel: ["Timestamp", "Lead ID", "Name", "Email", "Message", "Form type"],
 };
+
+function doGet() {
+  return jsonResponse_({ ok: true, service: "gfa-sheets" });
+}
 
 function doPost(e) {
   try {
