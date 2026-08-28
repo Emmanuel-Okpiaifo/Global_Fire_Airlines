@@ -73,9 +73,14 @@ export function InterestForm({ initialKind = "founding" }: { initialKind?: Kind 
             : "Thank you — your note is recorded. We will follow up privately.",
       );
       event.currentTarget.reset();
-    } catch {
+    } catch (err) {
       setStatus("err");
-      setMessage("We could not reach the server. Please try again in a moment.");
+      const detail = err instanceof Error ? err.message : "";
+      setMessage(
+        detail
+          ? `Connection failed: ${detail}. Check your network and try again.`
+          : "We could not reach the server. Please try again in a moment.",
+      );
     }
   }
 
@@ -83,8 +88,8 @@ export function InterestForm({ initialKind = "founding" }: { initialKind?: Kind 
     "mt-1.5 w-full rounded-[6px] border border-stone bg-ivory px-3 py-3 text-sm text-navy outline-none ring-copper/30 focus:ring-2";
 
   return (
-    <div>
-      <div className="flex flex-wrap gap-2">
+    <div className="interest-form">
+      <div className="interest-form__tabs">
         {tabs.map(([value, label]) => (
           <button
             key={value}
@@ -94,7 +99,7 @@ export function InterestForm({ initialKind = "founding" }: { initialKind?: Kind 
               setStatus("idle");
               setMessage("");
             }}
-            className={`px-4 py-2 text-[0.8rem] font-semibold tracking-[0.04em] rounded-[6px] ${
+            className={`interest-form__tab px-4 py-2 text-[0.8rem] font-semibold tracking-[0.04em] rounded-[6px] ${
               kind === value
                 ? "bg-navy text-ivory"
                 : "border border-stone bg-ivory text-navy hover:border-copper"

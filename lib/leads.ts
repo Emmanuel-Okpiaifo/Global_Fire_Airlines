@@ -26,9 +26,14 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-/** Netlify/Vercel serverless — project dir is read-only; use Google Sheets in production. */
+/** Serverless hosts cannot persist to the project directory — use Google Sheets in production. */
 function isServerlessHost(): boolean {
-  return Boolean(process.env.NETLIFY || process.env.VERCEL);
+  return (
+    process.env.NODE_ENV === "production" ||
+    Boolean(process.env.NETLIFY) ||
+    Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME) ||
+    Boolean(process.env.VERCEL)
+  );
 }
 
 export function validateLead(input: Partial<Lead> & { kind?: string }): string | null {
