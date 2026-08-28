@@ -13,7 +13,7 @@ export const pitchSlides: PitchSlide[] = [
     number: "00",
     kicker: "Investor & advisor briefing · Lagos, Nigeria",
     title: "A premium Lagos–Abuja business-class shuttle, built for purposeful scale.",
-    body: "Global Fire Airlines is a membership-led concept for Nigeria’s busiest domestic corridor. This briefing is for discernment — not a request for a cheque.",
+    body: "Global Fire Airlines is a membership-led concept for Nigeria’s busiest domestic corridor. This briefing is for private counsel — not a request for a cheque.",
     points: [
       "Taking the Fire to the Nations",
       "Premium movement with meaning",
@@ -142,7 +142,7 @@ export const pitchSlides: PitchSlide[] = [
   {
     number: "10",
     kicker: "The next steps",
-    title: "The ask today is discernment — not a cheque.",
+    title: "The ask today is counsel — not a cheque.",
     points: [
       "Secure an aviation partner: 2–3 serious conversations with retired captains or former airline operations directors.",
       "Scope the pilot: a membership/booking layer that resells seats on an existing AOC holder’s LOS–ABV flights.",

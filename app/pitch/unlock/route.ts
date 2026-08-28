@@ -4,10 +4,10 @@ import { PITCH_COOKIE } from "@/lib/brand";
 export async function POST(request: NextRequest) {
   const form = await request.formData();
   const password = String(form.get("password") ?? "");
-  const expected = process.env.PITCH_PASSWORD || "discernment";
+  const expected = process.env.PITCH_PASSWORD;
   const origin = request.nextUrl.origin;
 
-  if (password !== expected) {
+  if (!expected || password !== expected) {
     return NextResponse.redirect(new URL("/pitch?error=1", origin), 303);
   }
 
