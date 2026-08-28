@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveLead, validateLead, type LeadKind } from "@/lib/leads";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   let body: Record<string, unknown>;
   try {
@@ -30,6 +32,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error ?? "Invalid form." }, { status: 400 });
   }
 
-  await saveLead({ ...payload, kind: payload.kind });
-  return NextResponse.json({ ok: true });
+  try {
+    const result = await saveLead({ ...payload, kind: payload.kind });
+    return NextResponse.json({
+      ok: true,
+      sheet: result.sheets?.ok ? result.sheets.sheet : undefined,
+    });
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Could not save your registration.";
+    console.error("[api/interest]", message);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }

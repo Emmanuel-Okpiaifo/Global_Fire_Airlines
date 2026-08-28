@@ -43,6 +43,7 @@ export async function pushLeadToGoogleSheets(lead: Lead): Promise<SheetsPushResu
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(buildSheetsPayload(lead)),
+      redirect: "follow",
     });
 
     const raw = await response.text();

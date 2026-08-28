@@ -44,7 +44,21 @@ export function InterestForm({ initialKind = "founding" }: { initialKind?: Kind 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...payload, kind }),
       });
-      const data = (await res.json()) as { error?: string; sheet?: string };
+
+      const raw = await res.text();
+      let data: { error?: string; sheet?: string } = {};
+      try {
+        data = raw ? (JSON.parse(raw) as typeof data) : {};
+      } catch {
+        setStatus("err");
+        setMessage(
+          res.ok
+            ? "Unexpected server response. Please try again."
+            : `Server error (${res.status}). Please try again in a moment.`,
+        );
+        return;
+      }
+
       if (!res.ok) {
         setStatus("err");
         setMessage(data.error || "Something went wrong. Please try again.");

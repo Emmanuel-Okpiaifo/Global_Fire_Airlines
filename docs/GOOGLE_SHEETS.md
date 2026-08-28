@@ -54,6 +54,8 @@ GOOGLE_SHEETS_SECRET=same-string-as-SHEET_SECRET-in-apps-script
 
 Restart the dev server after saving.
 
+**On Netlify:** the site cannot write to `data/leads.json` (serverless filesystem). You **must** set `GOOGLE_SHEETS_WEBHOOK_URL` and `GOOGLE_SHEETS_SECRET` in Netlify → Site configuration → Environment variables, then redeploy.
+
 ### 6. Test
 
 Submit a test entry on each form tab (Founding with Flame, Founding with Ember, Corporate, Counsel) and confirm rows appear in the correct sheets.
